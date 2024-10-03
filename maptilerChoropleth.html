@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Display a choropleth Map from GeoJSON</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+    }
+
+    .legend {
+      background-color: #000;
+      border-radius: 3px;
+      bottom: 30px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+      color: #fff ;
+      font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+      padding: 10px;
+      position: absolute;
+      right: 10px;
+      z-index: 800;
+    }
+
+    .legend h4 {
+      margin: 0 0 10px;
+    }
+
+    .legend div span {
+      border-radius: 50%;
+      display: inline-block;
+      height: 10px;
+      margin-right: 5px;
+      width: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <p><a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a></p>
+  <div id="state-legend" class="legend">
+    <h4>Mean age of </br> women at first marriage </h4>
+      <div><span style="background-color: #fff5eb"></span>23</div>
+      <div><span style="background-color: #fee6ce"></span>24</div>
+      <div><span style="background-color: #fdd0a2"></span>25</div>
+      <div><span style="background-color: #fdae6b"></span>26</div>
+      <div><span style="background-color: #fd8d3c"></span>27</div>
+      <div><span style="background-color: #f16913"></span>28</div>
+      <div><span style="background-color: #d94801"></span>29</div>
+      <div><span style="background-color: #8c2d04"></span>30</div>
+  </div>
+</body>
+<script>
+  const key = 'olawdO7nkxZyF6I8Gcx3';
+
+  const map = L.map('map').setView([0,0], 2);
+  const layer = L.tileLayer(`https://api.maptiler.com/maps/dataviz-light/{z}/{x}/{y}.png?key=${key}`,{
+    tileSize: 512,
+    zoomOffset: -1,
+    minZoom: 1,
+    attribution: "\u003ca href=\"https://www.maptiler.com/copyright/\" target=\"_blank\"\u003e\u0026copy; MapTiler\u003c/a\u003e \u003ca href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\"\u003e\u0026copy; OpenStreetMap contributors\u003c/a\u003e",
+    crossOrigin: true
+  }).addTo(map);
+  function getColor(age) {
+    return age > 30 ? '#8c2d04' :
+      age > 29  ? '#d94801' :
+      age > 28  ? '#f16913' :
+      age > 27  ? '#fd8d3c' :
+      age > 26  ? '#fdae6b' :
+      age > 25  ? '#fdd0a2' :
+      age > 24  ? '#fee6ce' :
+      '#fff5eb';
+  }
+  function getStyle(feature) {
+    return {
+      weight: 1, //size of outline
+      opacity: 1, //outline opacity
+      color: 'black', //colour of outline
+      fillOpacity: 1,
+      fillColor: getColor(feature.properties.age),
+    };
+  }
+  function popup(feature, layer){
+    layer.bindPopup(`<h3>Average age of </br> women at first marriage</h3><p>${feature.properties.age}</p>`)
+  }
+  const geojson = new L.GeoJSON.AJAX(`https://api.maptiler.com/data/55336072-ef0f-4cb5-8671-b8d6ebbb0a05/features.json?key=${key}`,{
+    onEachFeature:popup,
+    style: getStyle
+  }).addTo(map);
+</script>
+</html>

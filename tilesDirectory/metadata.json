@@ -1,0 +1,14 @@
+{
+"name": "tilesDirectory",
+"description": "tilesDirectory",
+"version": "2",
+"minzoom": "0",
+"maxzoom": "14",
+"center": "16.380615,48.202710,14",
+"bounds": "9.538301,46.376768,17.150002,49.014018",
+"type": "overlay",
+"format": "pbf",
+"generator": "tippecanoe v1.36.0",
+"generator_options": "tippecanoe --no-feature-limit --no-tile-size-limit --no-tile-compression -s EPSG:4326 --output-to-directory tilesDirectory --force austria220_000randomPoints.geojson",
+"json": "{\"vector_layers\": [ { \"id\": \"austria220_000randomPoints\", \"description\": \"\", \"minzoom\": 0, \"maxzoom\": 14, \"fields\": {} } ],\"tilestats\": {\"layerCount\": 1,\"layers\": [{\"layer\": \"austria220_000randomPoints\",\"count\": 220000,\"geometry\": \"Point\",\"attributeCount\": 0,\"attributes\": []}]}}"
+}

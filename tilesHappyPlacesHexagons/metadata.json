@@ -1,0 +1,14 @@
+{
+"name": "tilesHappyPlacesHexagons",
+"description": "tilesHappyPlacesHexagons",
+"version": "2",
+"minzoom": "0",
+"maxzoom": "14",
+"center": "10.711670,47.524619,14",
+"bounds": "9.533724,46.367044,17.166294,49.017044",
+"type": "overlay",
+"format": "pbf",
+"generator": "tippecanoe v1.36.0",
+"generator_options": "tippecanoe --no-feature-limit --no-tile-size-limit --no-tile-compression -s EPSG:4326 --output-to-directory tilesHappyPlacesHexagons --force happyPlacesHexagons.geojson",
+"json": "{\"vector_layers\": [ { \"id\": \"happyPlacesHexagons\", \"description\": \"\", \"minzoom\": 0, \"maxzoom\": 14, \"fields\": {\"NUMPOINTS\": \"Number\", \"id\": \"Number\"} } ],\"tilestats\": {\"layerCount\": 1,\"layers\": [{\"layer\": \"happyPlacesHexagons\",\"count\": 117510,\"geometry\": \"Polygon\",\"attributeCount\": 2,\"attributes\": [{\"attribute\": \"NUMPOINTS\",\"count\": 12,\"type\": \"number\",\"values\": [0,1,10,2,20004,3,4,5,6,7,8,9],\"min\": 0,\"max\": 20004},{\"attribute\": \"id\",\"count\": 1000,\"type\": \"number\",\"values\": [10000,100000,100001,100002,10001,10002,10003,10004,100044,100045,100046,10005,100051,100052,100053,100054,100055,100056,100057,100058,100059,100060,100061,100062,100063,100064,100065,100066,100067,100068,100069,100070,100071,100072,100073,100074,100075,100076,100077,100078,100079,100080,100081,100082,100083,100084,100085,100086,100087,100088,100089,100090,100091,100092,100093,100094,100095,100096,100097,100098,100099,100100,100101,100102,100103,100104,100105,100106,100107,100108,100109,100110,100111,100112,100113,100114,100115,100116,100117,100118,100119,100120,100121,100122,100123,100124,100125,100126,100127,100128,100129,100130,100131,100132,100133,100134,100135,100136,100137,100138],\"min\": 175,\"max\": 233302}]}]}}"
+}
